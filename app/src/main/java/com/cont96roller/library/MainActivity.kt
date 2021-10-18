@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.cont96roller.library.databinding.ActivityMainBinding
 import com.cont96roller.library.viewmodel.LogMsg
@@ -28,6 +29,18 @@ class MainActivity : AppCompatActivity() {
         /*Custom Log 사용하기*/
         LogMsg.e("", "")
 
+
+        observeKakaoBookModel()
+        viewModel.getSearchBookResult()
+
+
+    }
+
+    fun observeKakaoBookModel() {
+        viewModel.kakaoBookModel.observe(this, Observer {
+            it
+            Toast.makeText(baseContext, "${it.documents[0].title}", Toast.LENGTH_SHORT).show()
+        })
     }
 
     fun moveToSearch(v: View) {
