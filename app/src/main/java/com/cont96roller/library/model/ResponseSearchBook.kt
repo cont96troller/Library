@@ -1,8 +1,6 @@
 package com.cont96roller.library.model
 
-import com.google.gson.annotations.SerializedName
-
-data class ResponseSearchBook (val meta: Meta, val documents: MutableList<Documents>)
+data class ResponseSearchBook(val meta: Meta, val documents: MutableList<Documents>)
 data class Meta(val is_end: Boolean, val pageable_count: Int, val total_count: Int)
 data class Documents(
     val authors: Array<String>,

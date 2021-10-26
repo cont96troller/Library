@@ -32,10 +32,10 @@ class SearchBookViewModel() : ViewModel() {
     var responseSearchBook: MutableLiveData<ResponseSearchBook> = MutableLiveData()
 
     var searchWord: MutableLiveData<String> = MutableLiveData()
-/*    private var resultList = MutableLiveData<List<SearchBookModel>>()
+   private var resultList = MutableLiveData<List<SearchBookModel>>()
     val searchResult: LiveData<List<SearchBookModel>>
         get() = resultList
-
+/*
     val editorActionListener : TextView.OnEditorActionListener
 
 
@@ -76,7 +76,9 @@ class SearchBookViewModel() : ViewModel() {
                 response: Response<ResponseSearchBook>
             ) {
                 LogMsg.e("", "")
+
                 responseSearchBook.postValue(response.body())
+//                SearchBookActivity.kt observeKakaoBookModel() 가불린다
             }
 
             override fun onFailure(call: Call<ResponseSearchBook>, t: Throwable) {
