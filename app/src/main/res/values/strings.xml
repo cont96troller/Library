@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Library</string>
+    <string name="kakao_rest_api_key" translatable="false">aa2242eee99b05e3b3eb37407845fd03</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.cont96roller.library.api
+package com.cont96roller.library.`interface`
 
 import com.cont96roller.library.model.ResponseSearchBook
 import retrofit2.Call
@@ -6,11 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 
-interface BookService {
+interface RequestSearchBookInterface {
     @GET("v3/search/book")
-    fun getBooksByName(
-        @Header("Authorization") token: String = "KakaoAK 8ff9c8db72481a150a26290fed2ed8a3",
+    fun searchBook(
+        @Header("Authorization") token: String,
         @Query("query") title: String
     ): Call<ResponseSearchBook>
-
 }

@@ -6,17 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import com.cont96roller.library.api.BookService
 import com.cont96roller.library.common.LogMsg
 import com.cont96roller.library.model.ResponseSearchBook
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import retrofit2.*
+import retrofit2.converter.gson.GsonConverterFactory
 
-
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class SearchViewModel(application: Application) : AndroidViewModel(application) {
     var responseSearchBook: MutableLiveData<ResponseSearchBook> = MutableLiveData()
 
     private val auth = "KakaoAK 8ff9c8db72481a150a26290fed2ed8a3"
@@ -27,7 +22,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             val newRequest: Request = chain.request().newBuilder()
                 .addHeader("Authorization", "$auth")
                 .build()
-            chain.proceed(newRequest)
+            chain.proceed((newRequest))
         }.build()
 
 
@@ -38,9 +33,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
         val bookService = retrofit.create(BookService::class.java)
 
-
-        bookService.getBooksByName(title=keyword).enqueue(object : Callback<ResponseSearchBook> {
-            override fun onResponse(call: Call<ResponseSearchBook>, response: Response<ResponseSearchBook>) {
+        bookService.getBooksByName(title = keyword).enqueue(object : Callback<ResponseSearchBook> {
+            override fun onResponse(
+                call: Call<ResponseSearchBook>,
+                response: Response<ResponseSearchBook>
+            ) {
                 LogMsg.e("", "")
                 responseSearchBook.postValue(response.body())
             }
@@ -50,8 +47,5 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
 
         })
-
     }
-
-
 }

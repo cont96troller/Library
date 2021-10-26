@@ -1,4 +1,4 @@
-package com.cont96roller.library.viewmodel
+package com.cont96roller.library.common
 
 import android.util.Log
 
