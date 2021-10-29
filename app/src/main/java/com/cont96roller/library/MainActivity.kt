@@ -28,33 +28,9 @@ class MainActivity : AppCompatActivity() {
 
         /*Custom Log 사용하기*/
         LogMsg.e("", "")
-
-
-
-
-
-//        observeKakaoBookModel()
-//        viewModel.getSearchBookResult(
-//            "s"
-//        )
-//
-//
-//
-//    }
-//
-//    fun observeKakaoBookModel() {
-//        viewModel.kakaoBookModel.observe(this, Observer {
-//            it
-//            Toast.makeText(baseContext, "${it.documents[0].title}", Toast.LENGTH_SHORT).show()
-//        })
-//    }
-
-
-
     }
 
     fun moveToSearch(v: View) {
-//            Toast.makeText(baseContext, "찾기 버튼 클릭", Toast.LENGTH_SHORT).show()
 
         val intent = Intent(applicationContext, SearchBookActivity::class.java)
         startActivity(intent)

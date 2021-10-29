@@ -1,21 +1,15 @@
-package com.cont96roller.library.adapter
+package com.cont96roller.library.viewmodel
 
-import android.content.Context
-import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.cont96roller.library.R
-import com.cont96roller.library.SearchBookActivity
 import com.cont96roller.library.api.BookService
 import com.cont96roller.library.common.LogMsg
+import com.cont96roller.library.model.SearchBookResultModel
 import com.cont96roller.library.model.ResponseSearchBook
-import com.cont96roller.library.model.SearchBookModel
-import com.cont96roller.library.network.RequestToServer
-import com.cont96roller.library.network.function.customEnqueue
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import retrofit2.Call
@@ -23,18 +17,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.logging.Logger
 
-//class SearchBookViewModel(val searchResultAction: SearchBookActivity.SearchAction) : ViewModel() {
-class SearchBookViewModel() : ViewModel() {
+class SearchBookViewModel : ViewModel() {
 
     private val auth = "KakaoAK 8ff9c8db72481a150a26290fed2ed8a3"
     var responseSearchBook: MutableLiveData<ResponseSearchBook> = MutableLiveData()
 
     var searchWord: MutableLiveData<String> = MutableLiveData()
-   private var resultList = MutableLiveData<List<SearchBookModel>>()
-    val searchResult: LiveData<List<SearchBookModel>>
-        get() = resultList
+
+    private var _resultList = MutableLiveData<List<SearchBookResultModel>>()
+    val searchResultModel: LiveData<List<SearchBookResultModel>>
+        get() = _resultList
 /*
     val editorActionListener : TextView.OnEditorActionListener
 
@@ -76,9 +69,11 @@ class SearchBookViewModel() : ViewModel() {
                 response: Response<ResponseSearchBook>
             ) {
                 LogMsg.e("", "")
+                val result = response.body()
 
-                responseSearchBook.postValue(response.body())
-//                SearchBookActivity.kt observeKakaoBookModel() 가불린다
+                responseSearchBook.postValue(result)
+                _resultList.postValue(result?.bookListModel)
+
             }
 
             override fun onFailure(call: Call<ResponseSearchBook>, t: Throwable) {

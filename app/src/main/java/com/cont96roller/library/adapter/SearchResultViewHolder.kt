@@ -5,19 +5,22 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.cont96roller.library.databinding.ItemSearchResultBinding
+import com.cont96roller.library.model.SearchBookResultModel
 
-class SearchResultViewHolder (
+class SearchResultViewHolder(
     private val binding: ItemSearchResultBinding,
-    private val onItemClick: (com.cont96roller.library.model.SearchBookModel) -> Unit
+    private val onItemClick: (SearchBookResultModel) -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(searchResultModel: com.cont96roller.library.model.SearchBookModel) {
+    fun bind(searchBookResultModel: SearchBookResultModel) {
         binding.apply {
-            txtAuthor.text = searchResultModel.author
-            txtTitle.text = searchResultModel.title
-            Glide.with(root.context).asBitmap().load(searchResultModel.thumbnailUrl)
+
+            bookModel = searchBookResultModel
+            
+            Glide.with(root.context).asBitmap().load(searchBookResultModel.thumbnail)
                 .into(imgThumbnail)
+
             root.setOnClickListener {
-                onItemClick(searchResultModel)
+                onItemClick(searchBookResultModel)
             }
         }
     }
@@ -25,7 +28,7 @@ class SearchResultViewHolder (
     companion object {
         fun getViewHolder(
             parent: ViewGroup,
-            itemClick: (com.cont96roller.library.model.SearchBookModel) -> Unit
+            itemClick: (SearchBookResultModel) -> Unit
         ): SearchResultViewHolder {
             val binding =
                 ItemSearchResultBinding.inflate(
