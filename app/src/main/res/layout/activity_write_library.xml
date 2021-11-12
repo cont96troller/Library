@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LibraryWriteActivity">
+
+        <TextView
+            android:id="@+id/txt_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="리뷰작성하기"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_back"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="@+id/btn_back" />
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ico_back_nor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="back"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_ok"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/icon_save"
+            android:onClick="write"
+            app:layout_constraintBottom_toBottomOf="@id/btn_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_back" />
+
+        <ImageView
+            android:id="@+id/img_book"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="13dp"
+            app:flow_verticalBias="0.151"
+            app:layout_constraintBottom_toTopOf="@id/edit_diary_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/txt_temp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/btn_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_title" />
+
+        <TextView
+            android:id="@+id/txt_weather_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:flow_horizontalBias="0.5"
+            app:layout_constraintBottom_toTopOf="@id/txt_temp"
+            app:layout_constraintEnd_toEndOf="@id/txt_temp"
+            app:layout_constraintStart_toStartOf="@id/txt_temp"
+            app:layout_constraintTop_toTopOf="@id/img_book"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier_img"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="img_book"
+            app:layout_constraintEnd_toStartOf="@id/txt_weather_status"
+            app:layout_constraintStart_toEndOf="@id/img_book" />
+
+        <TextView
+            android:id="@+id/txt_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/img_book"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/img_book"
+            app:layout_constraintTop_toBottomOf="@id/txt_weather_status" />
+
+        <EditText
+            android:id="@+id/edit_diary_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginVertical="20dp"
+            android:background="@null"
+            android:hint="리뷰 제목"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_book" />
+
+        <ImageView
+            android:id="@+id/view_dotted_line"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_marginVertical="4dp"
+            android:layerType="software"
+            app:layout_constraintEnd_toEndOf="@+id/edit_diary_title"
+            app:layout_constraintStart_toStartOf="@+id/edit_diary_title"
+            app:layout_constraintTop_toBottomOf="@+id/edit_diary_title" />
+
+        <EditText
+            android:id="@+id/edit_diary_contents"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="18dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="left"
+            android:hint="내용을 작성해 주세요"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="10dp"
+            android:textColor="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_dotted_line" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

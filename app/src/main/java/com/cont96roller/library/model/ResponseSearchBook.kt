@@ -22,3 +22,7 @@ data class SearchBookResultModel(
     val title: String = "",
     val url: String = ""
 ) : Parcelable
+
+
+
+

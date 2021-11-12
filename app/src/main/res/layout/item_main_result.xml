@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,14 +22,15 @@
                 android:id="@+id/img_thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="4dp"
+                android:layout_marginHorizontal="46dp"
                 android:adjustViewBounds="true"
                 android:background="@color/white"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toTopOf="@+id/txt_title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
             <TextView
                 android:id="@+id/txt_title"
@@ -38,14 +40,14 @@
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="@{bookModel.title}"
+                android:text="@{reviewModel.title}"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/txt_author"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_thumbnail"
-                tools:text="title" />
+                tools:text="title"/>
 
             <TextView
                 android:id="@+id/txt_author"
@@ -60,24 +62,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_title"
-                tools:text="author" />
+                tools:text="author"/>
+
+
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
     </androidx.cardview.widget.CardView>
-
-
 
     <data>
 
         <variable
-            name="bookModel"
-            type="com.cont96roller.library.model.SearchBookResultModel" />
+            name="reviewModel"
+            type="com.cont96roller.library.room.Review" />
+
     </data>
-
-
-
-
 
 </layout>

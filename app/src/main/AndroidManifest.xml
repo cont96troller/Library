@@ -20,8 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".LibraryShowActivity"/>
         <activity android:name=".SearchBookActivity" />
+        <activity android:name=".LibraryWriteActivity"/>
 
     </application>
 

@@ -15,13 +15,14 @@ class SearchResultViewHolder(
         binding.apply {
 
             bookModel = searchBookResultModel
-            
+
             Glide.with(root.context).asBitmap().load(searchBookResultModel.thumbnail)
                 .into(imgThumbnail)
 
             root.setOnClickListener {
                 onItemClick(searchBookResultModel)
             }
+
         }
     }
 

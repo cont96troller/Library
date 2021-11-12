@@ -2,10 +2,14 @@ package com.cont96roller.library.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.cont96roller.library.api.BookService
 import com.cont96roller.library.common.LogMsg
 import com.cont96roller.library.model.ResponseSearchBook
+import com.cont96roller.library.room.Review
+import com.cont96roller.library.room.ReviewDao
+import com.cont96roller.library.room.ReviewDatabase
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -18,6 +22,10 @@ import retrofit2.Response
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     var responseSearchBook: MutableLiveData<ResponseSearchBook> = MutableLiveData()
+
+    private val reviewDatabase = ReviewDatabase.getInstance(application)!!
+    private val reviewDao = reviewDatabase.reviewDao()
+    val reviews = reviewDao.getAll()
 
     private val auth = "KakaoAK 8ff9c8db72481a150a26290fed2ed8a3"
 
@@ -39,8 +47,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         val bookService = retrofit.create(BookService::class.java)
 
 
-        bookService.getBooksByName(title=keyword).enqueue(object : Callback<ResponseSearchBook> {
-            override fun onResponse(call: Call<ResponseSearchBook>, response: Response<ResponseSearchBook>) {
+        bookService.getBooksByName(title = keyword).enqueue(object : Callback<ResponseSearchBook> {
+            override fun onResponse(
+                call: Call<ResponseSearchBook>,
+                response: Response<ResponseSearchBook>
+            ) {
                 LogMsg.e("", "")
                 responseSearchBook.postValue(response.body())
             }
@@ -51,6 +62,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
         })
 
+    }
+
+    fun getAll(): LiveData<List<Review>> {
+        return reviews
     }
 
 

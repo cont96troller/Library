@@ -16,6 +16,7 @@ import com.cont96roller.library.viewmodel.SearchBookViewModel
 import com.cont96roller.library.adapter.SearchResultAdapter
 import com.cont96roller.library.common.Constants
 import com.cont96roller.library.common.Constants.INTENT_KEY_IS_FROM_REVIEW
+import com.cont96roller.library.common.Constants.INTENT_KEY_TEST
 import com.cont96roller.library.databinding.ActivitySearchBookBinding
 import com.cont96roller.library.model.SearchBookModel
 import com.cont96roller.library.model.SearchBookResultModel
@@ -30,7 +31,16 @@ class SearchBookActivity : AppCompatActivity() {
 
         SearchResultAdapter {
             val searchBookResultModel = it
-            Toast.makeText(baseContext, "아이템 선택", Toast.LENGTH_SHORT).show()
+            val i = Intent(applicationContext, LibraryWriteActivity::class.java)
+//            i.putExtra(INTENT_KEY_TEST, it)
+            startActivity(i)
+            var bundle = Bundle()
+            bundle.putParcelable("key_bundle", it)
+            i.putExtra(INTENT_KEY_TEST, bundle)
+            startActivity(i)
+
+            val i2 = Intent()
+
         }
     }
 
